@@ -1,7 +1,7 @@
 /*
  **********************************************
  *  CS314 Principles of Programming Languages *
- *  Spring 2020                               *
+ *  Spring       *
  **********************************************
  */
 #include "utils.hpp"

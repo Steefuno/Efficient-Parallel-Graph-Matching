@@ -1,7 +1,7 @@
 /*
  **********************************************
  *  CS314 Principles of Programming Languages *
- *  Spring 2020                               *
+ *  Spring 2020		                       *
  **********************************************
  */
 #include "utils.hpp"
@@ -14,45 +14,45 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 	if (argc < 4) {
-        printUsage(argv[0]);
-        exit(EXIT_FAILURE);
-    }
+		printUsage(argv[0]);
+		exit(EXIT_FAILURE);
+	}
 
-    int i = 1;
+	int i = 1;
 
-    char * inputFile = argv[i++];
-    char * outputFile = argv[i++];
+	char * inputFile = argv[i++];
+	char * outputFile = argv[i++];
 	int numthreads = atoi(argv[i++]);
 	if(numthreads < 1) {
 		printUsage(argv[0]);
-        exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	
 	if(argc == 5) {
 		cudaSetDevice(atoi(argv[i++]));
 	}
 
-    GraphData graph;
+	GraphData graph;
 
-    //read the matrix/graph from the matrix market format file(.mtx) and sort it
-    readmm(inputFile, &graph);
+	//read the matrix/graph from the matrix market format file(.mtx) and sort it
+	readmm(inputFile, &graph);
 
-    //allocate memory for strongest neighbor results
-    int *res = (int *) malloc(graph.numNodes * sizeof(int));
+	//allocate memory for strongest neighbor results
+	int *res = (int *) malloc(graph.numNodes * sizeof(int));
 	
-    //initialize res to -1
-    for (i = 0 ; i < graph.numNodes; i++) res[i] = -1;
+	//initialize res to -1
+	for (i = 0 ; i < graph.numNodes; i++) res[i] = -1;
 	
-    strongNeighbor_wrapper(graph, res, numthreads);
+	strongNeighbor_wrapper(graph, res, numthreads);
 
-    //write result to output file
-    write_match_result(outputFile, res, graph.numNodes);
+	//write result to output file
+	write_match_result(outputFile, res, graph.numNodes);
 
-    //clean allocated memory
+	//clean allocated memory
 	free(res);
 	free(graph.src);
 	free(graph.dst);
 	free(graph.weight);
 
-    return 0;
+	return 0;
 }

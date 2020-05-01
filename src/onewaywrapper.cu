@@ -51,9 +51,9 @@ int one_way_handshake(GraphData graph, int *& matches, int numthreads)
 	int * madeChanges_gpu; //1-element array that strongestNeighborScan_gpu will mark to indicate whether it made changes
 	cudaMalloc((void **)&madeChanges_gpu, sizeof(int));
 	
-    /* Start matching */
-    int iter;
-    for (iter = 0; ; iter++) {
+	/* Start matching */
+	int iter;
+	for (iter = 0; ; iter++) {
 		
 		//Step 1: Get strongest neighbor for each vertex/node
 		

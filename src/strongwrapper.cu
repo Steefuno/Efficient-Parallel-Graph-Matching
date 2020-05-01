@@ -109,16 +109,16 @@ void strongNeighbor_wrapper(GraphData graph, int *& strongNeighbor, int numthrea
 {
 	fprintf(stderr, "Start Searching For Strongest Neighbor ... \n");
 
-    struct timeval beginTime, endTime;
+	struct timeval beginTime, endTime;
 
-    setTime(&beginTime);
+	setTime(&beginTime);
 
 	findStrongNeighbor(graph, strongNeighbor, numthreads);
 
-    setTime(&endTime);
+	setTime(&endTime);
 
-    fprintf(stderr, "Done searching.\n");
+	fprintf(stderr, "Done searching.\n");
 
-    fprintf(stderr, "Strong Neighbor Search Time: %.2f ms\n",
-            getTime(&beginTime, &endTime));
+	fprintf(stderr, "Strong Neighbor Search Time: %.2f ms\n",
+			getTime(&beginTime, &endTime));
 }
